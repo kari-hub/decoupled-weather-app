@@ -2,7 +2,7 @@
 
 A modern weather application built with a decoupled architecture, featuring a Laravel backend API and a Next.js frontend with TypeScript and Tailwind CSS.
 
-![Weather App Screenshot](docs/images/weather-app.png)
+![image](https://github.com/user-attachments/assets/d776bf91-0119-426d-8fd7-d8e1f68c028f)
 
 ## Features
 
