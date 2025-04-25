@@ -1,34 +1,56 @@
-import { WeatherData } from "@/types/WeatherData";
+'use client';
 
-type Props = {
+import { useState } from 'react';
+import { WeatherData } from '@/types/WeatherData';
+import { format } from 'date-fns';
+import WindStatus from './WindStatus';
+import HumidityStatus from './HumidityStatus';
+import TemperatureUnitSwitch from './TemperatureUnitSwitch';
+
+interface WeatherCardProps {
     data: WeatherData;
-};
+}
 
-export default function WeatherCard({ data }: Props) {
+const WeatherCard = ({ data }: WeatherCardProps) => {
+    const [unit, setUnit] = useState<'celsius' | 'fahrenheit'>('celsius');
+
+    const convertTemperature = (temp: number) => {
+        return unit === 'celsius' ? temp : (temp * 9 / 5) + 32;
+    };
+
     return (
-        <div className="bg-white p-6 rounded-2xl shadow-md w-full max-w-md mx-auto">
-        <div className="flex justify-between items-center mb-4">
-            <div>
-            <h2 className="text-2xl font-bold">{data.city}</h2>
-            <p className="text-sm text-gray-500">{data.date}</p>
-            <p className="text-lg capitalize">{data.description}</p>
+        <div className="bg-white rounded-lg shadow-lg p-6 mt-4">
+            <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center space-x-4">
+                    <img
+                        src={`/weather-icons/${data.icon}.png`}
+                        alt={data.description}
+                        className="w-16 h-16"
+                    />
+                    <div>
+                        <div className="flex items-center gap-2">
+                            <h1 className="text-4xl font-bold text-gray-900">
+                                {Math.round(convertTemperature(data.temp))}°
+                            </h1>
+                            <TemperatureUnitSwitch unit={unit} onUnitChange={setUnit} />
+                        </div>
+                        <p className="text-xl text-gray-900 capitalize">{data.description}</p>
+                    </div>
+                </div>
+                <div className="text-right">
+                    <p className="text-lg font-semibold text-gray-900">{data.city}</p>
+                    <p className="text-gray-900">
+                        {format(new Date(), 'do MMM yyyy')}
+                    </p>
+                </div>
             </div>
-            <img
-            src={`https://openweathermap.org/img/wn/${data.icon}@2x.png`}
-            alt="Weather Icon"
-            className="w-16 h-16"
-            />
-        </div>
-        <div className="text-center">
-            <h1 className="text-5xl font-bold">{Math.round(data.temperature)}°C</h1>
-            <p className="text-sm text-gray-500">
-            Feels like {Math.round(data.feelsLike)}°C
-            </p>
-        </div>
-        <div className="flex justify-between text-sm mt-4">
-            <p>💨 Wind: {data.windSpeed} m/s</p>
-            <p>💧 Humidity: {data.humidity}%</p>
-        </div>
+
+            <div className="grid grid-cols-2 gap-4 mt-6">
+                <WindStatus speed={data.windSpeed} />
+                <HumidityStatus humidity={data.humidity} />
+            </div>
         </div>
     );
-}
+};
+
+export default WeatherCard;
