@@ -97,10 +97,12 @@ yarn dev
 ## Screenshots
 
 ### Main Weather Display
-![Weather Display](docs/images/weather-display.png)
+![image](https://github.com/user-attachments/assets/d4da5572-b572-4fd4-b32f-001604e132af)
 
-### Weather Metrics
-![Weather Metrics](docs/images/weather-metrics.png)
+
+### 3-day Weather Forecast
+![image](https://github.com/user-attachments/assets/192dd229-aa0b-4d4a-95f1-33764015f4f1)
+
 
 ## Technical Implementation
 
