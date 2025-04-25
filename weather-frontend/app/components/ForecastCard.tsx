@@ -10,7 +10,7 @@ export default function ForecastCard({ day }: { day: ForecastDay }) {
         <div className="card p-4 shadow-lg text-center">
             <p className="text-sm text-gray-500">{day.date}</p>
             <img
-                src={`https://openweathermap.org/img/wn/${day.icon}@2x.png`}
+                src={`/weather-icons/${day.icon}.png`}
                 alt="Weather Icon"
                 className="w-12 h-12 mx-auto"
             />

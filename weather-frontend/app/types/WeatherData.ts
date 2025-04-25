@@ -1,20 +1,18 @@
-
 export interface WeatherData {
-    temperature: number;
+    city: string;
+    temp: number;
     description: string;
     icon: string;
-    date: string;
-    city: string;
-    windSpeed: number;
     humidity: number;
-    feelsLike: number;
+    windSpeed: number;
+    date: string;
 }
 
 export interface ForecastDay {
     date: string;
+    temp: number;
+    description: string;
     icon: string;
-    minTemp: number; 
-    maxTemp: number; 
 }
 
 export interface Coordinates {

@@ -11,7 +11,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-gradient-to-br from-blue-100 to-white min-h-screen`}>
+      <body
+      suppressHydrationWarning={true} 
+      className={`${inter.className} bg-gradient-to-br from-blue-100 to-white min-h-screen`}>
         <main className="max-w-4xl mx-auto p-4">
           <header className="text-center my-4">
             <div className="card bg-white shadow-lg p-6 rounded-lg">
